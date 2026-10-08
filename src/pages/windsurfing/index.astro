@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+---
+
+<Layout title="Windsurfing | Arturo Bevilacqua">
+  <div class="page-shell windsurf-shell">
+    <SiteHeader current="/windsurfing" />
+
+    <main>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Windsurfing • Wingfoiling</p>
+          <h1>Arturo Bevilacqua</h1>
+          <p class="role">Watersport Instructor</p>
+          <p class="lead">
+            When I'm not on my laptop I'm out looking for the perfect conditions of wind and waves on my wingfoil board.
+          </p>
+
+          <div class="cta-row">
+            <a class="primary-button" href="/windsurfing/sessions">See the sessions</a>
+            <a class="secondary-button" href="/windsurfing/contact">Book a lesson</a>
+          </div>
+
+          <div class="hero-links">
+            <a href="mailto:arti.bevilacqua@gmail.com">arti.bevilacqua@gmail.com</a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.google.com/maps/place/Blue+Zone+Sardinia/@41.1273187,9.065997,736m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12dbe459de83bc29:0xf8342df721a81854!8m2!3d41.1273147!4d9.0685719!16s%2Fg%2F11fzf36dd5?entry=ttu&g_ep=EgoyMDI2MTAwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Sardinia</a>
+            <a href="https://www.google.com/maps/place/ASSOCIAZIONE+VELICA+DILETTANTISTICA+WINDSURFING+MARINA+JULIA/@45.7746023,13.5280144,681m/data=!3m2!1e3!4b1!4m6!3m5!1s0x477b09c320b6ed65:0xa01c7f9c3d43624c!8m2!3d45.7745986!4d13.5305893!16s%2Fg%2F11fy_q6nk4?entry=ttu&g_ep=EgoyMDI2MTAwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Marina Julia</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="portrait-frame">
+            <img src="/arturo_wing.jpeg" alt="Arturo Bevilacqua portrait" />
+          </div>
+        </div>
+      </section>
+
+      <section id="sessions" class="content-section panel">
+        <div class="section-heading">
+          <p class="section-kicker">Sessions</p>
+          <h2>Good wind, safe progress, and a strong line.</h2>
+        </div>
+
+        <div class="news-list">
+          <article class="news-item">
+            <div class="news-meta">Coaching</div>
+            <h3>Private lessons</h3>
+            <p>One-to-one sessions built around technique, confidence, and reading the water with a calm eye.</p>
+          </article>
+
+          <article class="news-item">
+            <div class="news-meta">Freestyle & foil</div>
+            <h3>Progression-focused training</h3>
+            <p>Structured sessions for improving control, transitions, and comfort across changing conditions.</p>
+          </article>
+
+          <article class="news-item">
+            <div class="news-meta">Sardinia</div>
+            <h3>Coastal work</h3>
+            <p>Teaching in the natural environment where the conditions, wind, and sea state constantly shape the learning process.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>

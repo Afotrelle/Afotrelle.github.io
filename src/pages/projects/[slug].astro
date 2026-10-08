@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={`${project.data.title} | Arturo Bevilacqua`}>
+  <div class="page-shell">
+    <SiteHeader current="/projects" />
+
+    <main class="content-page">
+      <article class="project-article panel">
+        <p class="section-kicker">{project.data.type}</p>
+        <h1>{project.data.title}</h1>
+        <p class="article-summary">{project.data.summary}</p>
+
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+    </main>
+  </div>
+</Layout>

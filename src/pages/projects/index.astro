@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf(),
+);
+---
+
+<Layout title="Projects | Arturo Bevilacqua">
+  <div class="page-shell">
+    <SiteHeader current="/projects" />
+
+    <main class="content-page">
+      <section class="page-intro panel">
+        <p class="section-kicker">Projects</p>
+        <h1>Work and personal projects</h1>
+      </section>
+
+      <div class="article-list">
+        {projects.map((project) => (
+          <article class="article-preview panel">
+            <div class="project-meta">{project.data.type}</div>
+            <h2>
+              <a href={`/projects/${project.slug}`}>{project.data.title}</a>
+            </h2>
+            <p>{project.data.summary}</p>
+            <a class="read-link" href={`/projects/${project.slug}`}>Read the project →</a>
+          </article>
+        ))}
+      </div>
+    </main>
+  </div>
+</Layout>

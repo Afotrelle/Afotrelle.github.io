@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+---
+
+<Layout title="About | Arturo Bevilacqua">
+  <div class="page-shell">
+    <SiteHeader current="/about" />
+
+    <main class="content-page">
+      <section class="page-intro panel">
+        <p class="section-kicker">About</p>
+        <h1>Curiosity, rigor, and a taste for clarity.</h1>
+      </section>
+
+      <section class="story-grid panel">
+        <div class="story-copy">
+          <p>
+            I work at the intersection of statistics, machine learning, and visual communication. I enjoy building analytical systems that turn complex information into something understandable, useful, and honest.
+          </p>
+          <p>
+            My background is rooted in quantitative thinking, but I’m equally interested in the way information is framed and communicated. For me, good data work is not just accurate — it is also legible, contextualized, and actionable.
+          </p>
+        </div>
+
+        <div class="story-visual">
+          <div class="mini-panel">
+            <p class="section-kicker">What drives me</p>
+            <ul class="detail-list">
+              <li>Explaining uncertainty clearly</li>
+              <li>Designing tools that support decisions</li>
+              <li>Building models with real-world constraints in mind</li>
+              <li>Balancing technical depth with communication</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>

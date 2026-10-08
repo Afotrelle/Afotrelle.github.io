@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+
+export async function getStaticPaths() {
+  const sessions = await getCollection('sessions');
+
+  return sessions.map((session) => ({
+    params: { slug: session.slug },
+    props: { session },
+  }));
+}
+
+const { session } = Astro.props;
+const { Content } = await render(session);
+---
+
+<Layout title={`${session.data.title} | Arturo Bevilacqua`}>
+  <div class="page-shell windsurf-shell">
+    <SiteHeader current="/windsurfing/sessions" />
+
+    <main class="content-page">
+      <article class="project-article panel">
+        <p class="section-kicker">{session.data.type}</p>
+        <h1>{session.data.title}</h1>
+        <p class="article-summary">{session.data.summary}</p>
+
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+    </main>
+  </div>
+</Layout>

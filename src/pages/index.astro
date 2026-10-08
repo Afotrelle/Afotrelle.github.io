@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+const recentWork = (await getCollection('projects'))
+  .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())
+  .slice(0, 3)
+  .map((project) => ({
+    title: project.data.title,
+    meta: project.data.type,
+    summary: project.data.summary,
+    slug: project.slug,
+  }));
+
+const experience = [
+  {
+    period: '2026',
+    role: 'Research Intern @VIMP(UniPd)',
+    detail: 'Research internship in the Visual Intelligence and Machine Perception group (VIMP), focusing on video models and adversarial robustness for my Master thesis.',
+    logo: '/logo_vimp.png',
+    logoAlt: 'VIMP logo',
+    url: 'http://vimp.math.unipd.it/index.html#',
+  },
+  {
+    period: '2024 — 2026',
+    role: 'MSc in Data Science @UniPd',
+    detail: 'GPA 110/110 with a thesis on "Sparse Adversarial Attacks on Video Action Classification: An ℓ0-/ℓ1-Norm-Constrained Projected Gradient Descent Approach".',
+    logo: '/logo_unipd.png',
+    logoAlt: 'University of Padua logo',
+    url: 'https://www.unipd.it/',
+  },
+  {
+    period: '2018 — 2023',
+    role: 'BSc in Statistics @UniPd',
+    detail: 'GPA 95/110 with a thesis on "Climate Change and Extreme Winds: an Application of Statistical Downscaling to Different Climate Scenarios in Northern Italy".',
+    logo: '/logo_unipd.png',
+    logoAlt: 'University of Padua logo',
+    url: 'https://www.unipd.it/',
+  },
+];
+---
+
+<Layout>
+  <div class="page-shell">
+    <SiteHeader current="/" />
+
+    <main>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Data Science • Machine Learning • Computer Vision • DataViz</p>
+          <h1>Arturo Bevilacqua</h1>
+          <p class="role">Data Scientist</p>
+          <p class="lead">
+            I'm a machine learning researcher exploring "how?" and "why?" video models fail, to build ones that don’t.
+          </p>
+
+          <div class="cta-row">
+            <a class="primary-button" href="/projects">Explore projects</a>
+            <a class="secondary-button" href="/contact">Get in touch</a>
+          </div>
+
+          <div class="hero-links">
+            <a href="mailto:arti.bevilacqua@gmail.com">arti.bevilacqua@gmail.com</a>
+            <a href="https://github.com/afotrelle" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/arturo-bevilacqua-ba0875209/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="portrait-frame">
+            <img src="/arturo.jpg" alt="Arturo Bevilacqua portrait" />
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section panel">
+        <div class="section-heading">
+          <h2 class="single-header">Recent work</h2>
+        </div>
+
+        <div class="news-list">
+          {recentWork.map((item) => (
+            <article class="news-item">
+              <div class="news-meta">{item.meta}</div>
+              <h3>
+                <a href={`/projects/${item.slug}`}>{item.title}</a>
+              </h3>
+              <p>{item.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="experience-section panel">
+        <div class="section-heading">
+          <h2>Experience & Education</h2>
+        </div>
+
+        <div class="experience-list">
+          {experience.map((item) => (
+            <div class="experience-item">
+              <div class="experience-meta-col">
+                <span class="experience-period">{item.period}</span>
+                {item.logo && item.url && (
+                  <a href={item.url} target="_blank" rel="noreferrer" aria-label={`Visit ${item.logoAlt || item.role}`}>
+                    <img class="experience-logo" src={item.logo} alt={item.logoAlt || item.role} />
+                  </a>
+                )}
+                {item.logo && !item.url && (
+                  <img class="experience-logo" src={item.logo} alt={item.logoAlt || item.role} />
+                )}
+              </div>
+
+              <div>
+                <h3>{item.role}</h3>
+                <p>{item.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
