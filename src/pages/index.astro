@@ -3,12 +3,21 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 
+const formatDate = (value: string | Date) => {
+  const date = value instanceof Date ? value : new Date(value);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
+
 const recentWork = (await getCollection('projects'))
   .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())
   .slice(0, 3)
   .map((project) => ({
     title: project.data.title,
-    meta: project.data.type,
+    meta: `${formatDate(project.data.publishedAt)} • ${project.data.type}${project.data.subtype ? ` / ${project.data.subtype}` : ''}`,
     summary: project.data.summary,
     slug: project.slug,
   }));
@@ -39,6 +48,7 @@ const experience = [
     url: 'https://www.unipd.it/',
   },
 ];
+
 ---
 
 <Layout>
@@ -48,15 +58,14 @@ const experience = [
     <main>
       <section class="hero panel">
         <div class="hero-copy">
-          <p class="eyebrow">Data Science • Machine Learning • Computer Vision • DataViz</p>
+          <p class="eyebrow">Data Science • Machine Learning • Computer Vision</p>
           <h1>Arturo Bevilacqua</h1>
-          <p class="role">Data Scientist</p>
           <p class="lead">
             I'm a machine learning researcher exploring "how?" and "why?" video models fail, to build ones that don’t.
           </p>
 
           <div class="cta-row">
-            <a class="primary-button" href="/projects">Explore projects</a>
+            <a class="primary-button" href="/projects">All projects</a>
             <a class="secondary-button" href="/contact">Get in touch</a>
           </div>
 

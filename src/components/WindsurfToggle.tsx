@@ -3,7 +3,6 @@ const STORAGE_KEY = 'arturo-windsurf-mode';
 const normalRouteMap: Record<string, string> = {
   '/windsurfing': '/',
   '/windsurfing/sessions': '/projects',
-  '/windsurfing/about': '/about',
   '/windsurfing/contact': '/contact',
 };
 

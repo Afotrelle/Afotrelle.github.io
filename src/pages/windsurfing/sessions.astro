@@ -6,6 +6,15 @@ import SiteHeader from '../../components/SiteHeader.astro';
 const sessions = (await getCollection('sessions')).sort(
   (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf(),
 );
+
+const formatDate = (value: string | Date) => {
+  const date = value instanceof Date ? value : new Date(value);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
 ---
 
 <Layout title="Sessions | Arturo Bevilacqua">
@@ -21,12 +30,12 @@ const sessions = (await getCollection('sessions')).sort(
       <div class="article-list">
         {sessions.map((session) => (
           <article class="article-preview panel">
-            <div class="project-meta">{session.data.type}</div>
+            <div class="project-meta">{formatDate(session.data.publishedAt)} • {session.data.type}</div>
             <h2>
               <a href={`/windsurfing/sessions/${session.slug}`}>{session.data.title}</a>
             </h2>
             <p>{session.data.summary}</p>
-            <a class="read-link" href={`/windsurfing/sessions/${session.slug}`}>Read the session →</a>
+            <a class="read-link" href={`/windsurfing/sessions/${session.slug}`}>Read more →</a>
           </article>
         ))}
       </div>

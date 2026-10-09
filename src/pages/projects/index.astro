@@ -6,6 +6,15 @@ import SiteHeader from '../../components/SiteHeader.astro';
 const projects = (await getCollection('projects')).sort(
   (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf(),
 );
+
+const formatDate = (value: string | Date) => {
+  const date = value instanceof Date ? value : new Date(value);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
 ---
 
 <Layout title="Projects | Arturo Bevilacqua">
@@ -21,7 +30,7 @@ const projects = (await getCollection('projects')).sort(
       <div class="article-list">
         {projects.map((project) => (
           <article class="article-preview panel">
-            <div class="project-meta">{project.data.type}</div>
+            <div class="project-meta">{formatDate(project.data.publishedAt)} • {project.data.type} / {project.data.subtype}</div>
             <h2>
               <a href={`/projects/${project.slug}`}>{project.data.title}</a>
             </h2>

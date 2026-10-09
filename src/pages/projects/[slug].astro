@@ -14,6 +14,15 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const formatDate = (value: string | Date) => {
+  const date = value instanceof Date ? value : new Date(value);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
 ---
 
 <Layout title={`${project.data.title} | Arturo Bevilacqua`}>
@@ -22,7 +31,7 @@ const { Content } = await render(project);
 
     <main class="content-page">
       <article class="project-article panel">
-        <p class="section-kicker">{project.data.type}</p>
+        <p class="section-kicker">{formatDate(project.data.publishedAt)} • {project.data.type} / {project.data.subtype}</p>
         <h1>{project.data.title}</h1>
         <p class="article-summary">{project.data.summary}</p>
 
