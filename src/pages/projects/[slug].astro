@@ -34,6 +34,14 @@ const formatDate = (value: string | Date) => {
         <p class="section-kicker">{formatDate(project.data.publishedAt)} • {project.data.type} / {project.data.subtype}</p>
         <h1>{project.data.title}</h1>
         <p class="article-summary">{project.data.summary}</p>
+        {project.data.tags?.length ? (
+          <div class="project-topics">
+            <span class="project-topics-label">Tags</span>
+            <ul aria-label="Project topics">
+              {project.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </div>
+        ) : null}
 
         <div class="prose">
           <Content />

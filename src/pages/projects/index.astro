@@ -35,6 +35,14 @@ const formatDate = (value: string | Date) => {
               <a href={`/projects/${project.slug}`}>{project.data.title}</a>
             </h2>
             <p>{project.data.summary}</p>
+            {project.data.tags?.length ? (
+              <div class="project-topics">
+                <span class="project-topics-label">Tags</span>
+                <ul aria-label="Project topics">
+                  {project.data.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+              </div>
+            ) : null}
             <a class="read-link" href={`/projects/${project.slug}`}>Read more →</a>
           </article>
         ))}

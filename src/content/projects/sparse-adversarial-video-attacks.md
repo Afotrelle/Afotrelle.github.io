@@ -1,15 +1,18 @@
 ---
 title: "Sparse Adversarial Video Attacks"
 type: "Research"
-subtype: "ML Robustness"
-summary: "Exploiting l_0 and l_1 ball projections in PGD to enforce sparsity of adversarial perturbations against videos."
+subtype: "MSc Thesis"
+tags: [HPC, Slurm, PyTorch, Adversarial ML, Sparse Optimization]
+summary: "Exploiting l_0 and l_1 ball projections in PGD to enforce sparsity of adversarial perturbations against video models."
 publishedAt: 2026-10-09
 github: https://github.com/Afotrelle/Adv-attack-videos
 ---
 
-## Overview
-
 This is the work behind my Master's thesis in Data Science at the University of Padova, carried out as a research internship in the VIMP (Visual Intelligence and Machine Perception) group, under the supervision of Prof. Lamberto Ballan and Prof. Marco Fiorucci.
+
+The complete thesis is publicly available at: https://thesis.unipd.it/handle/20.500.12608/115820
+
+## Overview
 
 Video models can be fooled by small, deliberate changes to their input. Existing *sparse* video attacks ask which **frames** to perturb, and then perturb each selected frame densely. I asked a different question: how few **pixels** are needed? I built an attack that enforces sparsity as a hard constraint, at both the frame and the pixel level, inside a single gradient-based loop.
 
@@ -23,12 +26,9 @@ Sparsity is also a diagnostic tool. A dense attack tells you a model can be fool
 
 The two closest prior works treat sparsity differently, and neither touches pixels:
 
-| | Frame sparsity | Pixel sparsity | Mechanism |
-|---|---|---|---|
-| Wei et al. (2019) $\ell_{2,1}$ sparse attack | Induced (soft penalty) | None | Single gradient loop |
-| DeepSAVA (Mu et al., 2021) | Enforced (search) | None | Outer Bayesian Optimisation + inner SGD |
-| **This work** | Enforced (thresholding) | Enforced ($\ell_0$) or Induced ($\ell_1$)| Single gradient loop |
-
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/comparison_table.png" alt="Comparison of frame sparsity, pixel sparsity, and mechanisms across attacks" />
+</figure>
 Both baselines minimize an unconstrained, penalty-based objective in the spirit of Carlini & Wagner. A penalty has no way to impose a hard budget, which is why their frame sparsity is only induced or searched. A projected-gradient formulation can enforce one by construction.
 
 ## Approach
@@ -53,13 +53,40 @@ $$\tilde{g} = \frac{\nabla_x \mathcal{L}}{\tfrac{1}{n}\|\nabla_x \mathcal{L}\|_1
 
 lets a single step size ($\alpha = 0.001$) work across all three architectures. The step is no longer guaranteed to converge, but the attack stops at the first misclassification, so in practice this doesn't matter. On Conv+LSTM at a 1% $\ell_0$ budget, the unnormalized attack with $\alpha=1$ reaches 25% fooling rate against 93% with normalization.
 
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/thesis_algorithm.png" alt="Pseudocode for the sparse l0/l1-constrained PGD attack with adaptive frame selection." />
+</figure>
+
 ## Results
 
-I evaluated on **Conv+LSTM**, **I3D** and **VideoMAE**, using subsets of UCF101 and Kinetics-400, against my own PyTorch reimplementations of both baselines.
+I evaluated on pretrained **Conv+LSTM**, **I3D** and **VideoMAE**, using subsets of UCF101 and Kinetics-400, against my own PyTorch reimplementations of both baselines.
 
 - **Versus the baselines.** The attacks beat Wei et al.'s $\ell_{2,1}$ attack and match DeepSAVA's fooling rate only when the whole video is available to perturb. At small frame counts, DeepSAVA's dense, frame-targeted search is still more effective.
+
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/fooling_rates.png" alt="Fooling rates comparison" />
+</figure>
+
 - **Cost of the perturbation.** At matched frame counts, my attacks touch a small fraction of the pixels and use a much smaller mean absolute perturbation than either baseline. A budget parameter exposes the trade-off between fooling rate and perturbation cost, which neither baseline offers.
+
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/sparsity.png" alt="Sparsity comparison" />
+</figure>
+
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/mean_absolute_perturbation.png" alt="MAP comparison" />
+</figure>
+
 - **Speed.** The attacks have the lowest per-iteration cost of all methods. DeepSAVA needs fewer iterations at large frame counts, so end-to-end my framework sits between DeepSAVA and the $\ell_{2,1}$ attack, and is the fastest of the three in the sparse regime.
+
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/wall_clock_time.png" alt="Wall clock time tables" />
+</figure>
+
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
+	<img src="/performance.png" alt="Performances comparison" />
+</figure>
+
 - **Global vs. Frame-wise.** The two allocations are almost equivalent on fooling rate, SSIM and perturbation magnitude, which I did not expect. Frame-wise keeps one structural advantage: it caps how much any single frame can receive.
 
 ## Sparsity as a lens on the model
@@ -69,6 +96,10 @@ Looking at *where* the cheapest sparse attack chooses to strike reveals clear, a
 - **VideoMAE:** perturbations form a visible grid aligned with the model's patch tokenization.
 - **Conv+LSTM:** perturbation concentrates in a few early frames and propagates through the recurrent hidden state, consistent with Wei et al.'s earlier observation.
 - **I3D:** perturbation is spread across frames with a strong oscillating pattern, which I tentatively relate to the temporal stride of the 3D convolutions.
+
+<figure class="prose-figure prose-figure--compact" style="--figure-max-width: 55rem;">
+	<img src="/l0global.png" alt="Attack surfaces by model for L0 global pgd" />
+</figure>
 
 These observations are qualitative, and a more systematic characterization is left open.
 

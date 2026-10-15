@@ -566,8 +566,56 @@ button {
   line-height: 1.8;
 }
 
+.project-topics {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+  margin-top: 1.2rem;
+}
+
+.project-topics-label {
+  color: var(--primary);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-topics ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-topics li {
+  padding: 0.36rem 0.6rem;
+  border: 1px solid rgba(38, 52, 68, 0.22);
+  border-left: 2px solid #74b7ff;
+  color: var(--text);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
 .prose {
   margin-top: 2rem;
+}
+
+.prose img {
+  margin-inline: auto;
+}
+
+.prose-figure--compact {
+  width: min(100%, var(--figure-max-width, 36rem));
+  margin: 1.5rem auto;
+}
+
+.prose-figure--compact img {
+  width: 100%;
+  height: auto;
 }
 
 .prose h2,

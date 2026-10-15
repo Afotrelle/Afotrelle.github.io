@@ -18,9 +18,9 @@ export default function WindsurfToggle({ label }: WindsurfToggleProps) {
     <button
       type="button"
       className="lang-toggle"
-      aria-label={enabled ? 'Disable Windsurfing Instructor mode' : 'Enable Windsurfing Instructor mode'}
+      aria-label={enabled ? 'Disable Windsurfing mode' : 'Enable Windsurfing mode'}
       aria-pressed={enabled}
-      title={enabled ? 'Back to normal mode' : 'Activate Windsurfing Instructor mode'}
+      title={enabled ? 'Back to normal mode' : 'Activate Windsurfing mode'}
       onClick={() => {
         const nextPath = enabled ? normalRouteMap[currentPath] ?? '/' : '/windsurfing';
         window.localStorage.setItem(STORAGE_KEY, String(!enabled));
