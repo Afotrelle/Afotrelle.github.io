@@ -1,0 +1,566 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+---
+
+<Layout title="CV | Arturo Bevilacqua">
+  <div class="page-shell">
+    <SiteHeader current="/cv" />
+
+    <main class="cv-page">
+      <header class="cv-heading">
+        <img class="cv-portrait" src="/arturo.jpg" alt="Portrait of Arturo Bevilacqua" />
+        <div>
+          <p class="section-kicker">Curriculum Vitae</p>
+          <h1>Arturo Bevilacqua</h1>
+          <p class="cv-role">MSc Graduate in Data Science</p>
+        </div>
+        <button class="cv-download" id="download-cv" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Download PDF
+        </button>
+      </header>
+
+      <div class="cv-contact" aria-label="Contact information">
+        <a href="mailto:arti.bevilacqua@gmail.com">arti.bevilacqua@gmail.com</a>
+        <a href="https://afotrelle.github.io/">afotrelle.github.io</a>
+        <a href="https://www.linkedin.com/in/arturo-bevilacqua-ba0875209/">LinkedIn</a>
+        <a href="https://github.com/afotrelle">GitHub</a>
+        <span>[Padova, Italy]</span>
+      </div>
+
+      <section class="cv-section">
+        <h2>Profile</h2>
+        <div class="cv-section-content">
+          <p>MSc graduate in Data Science with experience in video understanding and model robustness, interested in extending video and multimodal models toward world modeling and embodied AI.</p>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Research interests</h2>
+        <div class="cv-section-content">
+          <p>Video understanding • 3D vision • World models • Embodied AI • Robustness • Interpretability</p>
+        </div>
+      </section>
+
+      <section class="cv-section cv-timeline-section">
+        <h2>Education &amp; Experiences</h2>
+        <div class="cv-section-content cv-timeline">
+          <span class="cv-timeline-track" aria-hidden="true"></span>
+
+          <article class="cv-activity-group">
+            <div class="cv-timeline-row cv-primary-row">
+              <div class="cv-timeline-meta">
+                <p class="cv-timeline-location">University of Padova</p>
+                <p class="cv-timeline-date">2024–2026</p>
+              </div>
+              <span class="cv-timeline-dot" aria-hidden="true"></span>
+              <div class="cv-timeline-content">
+                <h3>MSc. in Data Science (curriculum: Machine Learning for Intelligent Systems)</h3>
+                <p class="cv-entry-detail">Data Science / Deep Learning / Computer Vision / Reinforcement Learning / Natural Language Processing</p>
+                <ul>
+                  <li>Grade: 110/110</li>
+                  <li>Thesis: "Sparse Adversarial Attacks on Video Action Classification: An ℓ0-/ℓ1-Norm-Constrained Projected Gradient Descent Approach"</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-subactivity-list">
+              <article class="cv-timeline-row cv-subactivity-row">
+                <div class="cv-timeline-meta">
+                  <p class="cv-timeline-location">Visual Intelligence and Machine Perception group (VIMP @Unipd)</p>
+                  <p class="cv-timeline-date">Mar–Sep 2026</p>
+                </div>
+                <span class="cv-timeline-dot" aria-hidden="true"></span>
+                <div class="cv-timeline-content">
+                  <h4>Research Internship for Thesis</h4>
+                  <p class="cv-entry-detail">Adversarial ML / Robustness / Video Understanding</p>
+                  <ul>
+                    <li>Implemented sparse video adversarial attacks via ℓ0- and ℓ1-constrained optimization against ConvLSTM, I3D and VideoMAE models</li>
+                    <li>Obtained close-to-SOTA results – >95% Fooling Rate, >0.99 SSIM (Imperceptibility metric) – by perturbing only 1% of the pixels</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </article>
+
+          <article class="cv-activity-group">
+            <div class="cv-timeline-row cv-primary-row">
+              <div class="cv-timeline-meta">
+                <p class="cv-timeline-location">University of Padova</p>
+                <p class="cv-timeline-date">2018–2023</p>
+              </div>
+              <span class="cv-timeline-dot" aria-hidden="true"></span>
+              <div class="cv-timeline-content">
+                <h3>BSc. in Statistics</h3>
+                <p class="cv-entry-detail">Inferential &amp; Descriptive Statistics / Probability Theory / Statistical Modeling / Data Analysis</p>
+                <ul>
+                  <li>Grade: 95/110</li>
+                  <li>Thesis: "Climate Change and Extreme Winds: an Application of Statistical Downscaling to Different Climate Scenarios in Northern Italy"</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cv-subactivity-list">
+              <article class="cv-timeline-row cv-subactivity-row">
+                <div class="cv-timeline-meta">
+                  <p class="cv-timeline-location">Universitat Autonoma de Barcelona (UAB)</p>
+                  <p class="cv-timeline-date">Feb–Jul 2022</p>
+                </div>
+                <span class="cv-timeline-dot" aria-hidden="true"></span>
+                <div class="cv-timeline-content">
+                  <h4>Erasmus+</h4>
+                  <p class="cv-entry-detail">Stochastic Processes / Survival Analysis / Game Theory / Econometrics</p>
+                </div>
+              </article>
+
+              <article class="cv-timeline-row cv-subactivity-row">
+                <div class="cv-timeline-meta">
+                  <p class="cv-timeline-location">Metis Sailing Team @Unipd</p>
+                  <p class="cv-timeline-date">2018–2023</p>
+                </div>
+                <span class="cv-timeline-dot" aria-hidden="true"></span>
+                <div class="cv-timeline-content">
+                  <h4>Crew Coordinator</h4>
+                  <ul>
+                    <li>Lead the Crews Sector of the university sailing team, collaborating to build a sustainable boat and winning the 1001VelaCup competition in 2023.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Technical skills</h2>
+        <div class="cv-section-content cv-skills">
+          <p><strong>Languages:</strong> Python, R, SQL, Bash</p>
+          <p><strong>Deep learning &amp; vision:</strong> PyTorch (primary), Hugging Face (Transformers, Datasets), OpenCV, TensorFlow, Keras</p>
+          <p><strong>Data &amp; scientific computing:</strong> NumPy, pandas, scikit-learn, matplotlib</p>
+          <p><strong>Research &amp; compute:</strong> Linux, HPC clusters (Slurm), Docker, Git/GitHub, Conda, Jupyter, LaTeX</p>
+          <p><strong>Design &amp; 3D:</strong> Figma, Adobe Photoshop/Illustrator, Rhinoceros 3D</p>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Languages</h2>
+        <div class="cv-section-content">
+          <p>Italian — C2 (Native)</p>
+          <p>English – B2</p>
+          <p>Slovenian — C1</p>
+          <p>Spanish — B1</p>
+        </div>
+      </section>
+
+      <section class="cv-section">
+        <h2>Other activities</h2>
+        <div class="cv-section-content">
+          <p>High School Substitute Maths Teacher • Nov 2023 [Padova, Italy]</p>
+          <p>Windsurfing Instructor • Summer 2023/24/25 [Sardinia, Italy]</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  document.querySelector('#download-cv')?.addEventListener('click', () => window.print());
+</script>
+
+<style>
+  .cv-page {
+    max-width: 900px;
+    margin: 2.5rem auto 0;
+    padding: 0 clamp(0.5rem, 3vw, 2rem);
+  }
+
+  .cv-heading {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .cv-portrait {
+    width: 5.5rem;
+    height: auto;
+    flex: 0 0 auto;
+    object-fit: cover;
+    object-position: center 43%;
+  }
+
+  .cv-heading > div {
+    align-self: flex-start;
+  }
+
+  .cv-heading .section-kicker {
+    margin-bottom: 0.6rem;
+  }
+
+  .cv-heading h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 0.95;
+  }
+
+  .cv-role {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .cv-download {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--text);
+    border-radius: 3px;
+    background: var(--text);
+    color: white;
+    cursor: pointer;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .cv-download:hover {
+    background: transparent;
+    color: var(--text);
+  }
+
+  .cv-download svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .cv-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.7rem;
+  }
+
+  .cv-contact a {
+    color: var(--text);
+  }
+
+  .cv-section {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.32fr) 1fr;
+    gap: 1.5rem;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--line);
+    break-inside: avoid;
+  }
+
+  .cv-section h2 {
+    padding-top: 0.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .cv-timeline-section {
+    display: block;
+  }
+
+  .cv-timeline-section > h2 {
+    margin-bottom: 1.2rem;
+  }
+
+  .cv-section-content {
+    color: var(--muted);
+    font-size: 0.76rem;
+    line-height: 1.75;
+  }
+
+  .cv-section-content p {
+    margin: 0 0 0.65rem;
+  }
+
+  .cv-section-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .cv-section-content ul {
+    margin: 0.35rem 0 0;
+  }
+
+  .cv-inline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1.4rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cv-timeline {
+    --cv-meta-width: clamp(10rem, 22vw, 12.4rem);
+    --cv-marker-width: 1.5rem;
+    --cv-track-center: 0.75rem;
+    --cv-timeline-gap: 0.65rem;
+    position: relative;
+  }
+
+  .cv-timeline-track {
+    position: absolute;
+    top: 0.45rem;
+    bottom: 0.45rem;
+    left: calc(var(--cv-meta-width) + var(--cv-timeline-gap) + var(--cv-track-center));
+    width: 1px;
+    transform: translateX(-50%);
+    background: var(--line);
+  }
+
+  .cv-activity-group + .cv-activity-group {
+    margin-top: 1.5rem;
+  }
+
+  .cv-subactivity-list {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .cv-timeline-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--cv-meta-width) var(--cv-marker-width) minmax(0, 1fr);
+    column-gap: var(--cv-timeline-gap);
+  }
+
+  .cv-timeline-meta {
+    padding-top: 0.05rem;
+    text-align: right;
+  }
+
+  .cv-timeline-meta p {
+    margin: 0;
+  }
+
+  .cv-timeline-location {
+    color: var(--text);
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .cv-timeline-date {
+    margin-top: 0.2rem !important;
+    color: var(--muted);
+    font-size: 0.62rem;
+    line-height: 1.45;
+  }
+
+  .cv-timeline-dot {
+    position: relative;
+    z-index: 1;
+    justify-self: center;
+    width: 0.78rem;
+    height: 0.78rem;
+    margin-top: 0.2rem;
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    background: #404040;
+  }
+
+  .cv-subactivity-row .cv-timeline-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.32rem;
+    border-width: 1px;
+  }
+
+  .cv-timeline-content h3,
+  .cv-timeline-content h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .cv-timeline-content h3 {
+    font-size: 0.86rem;
+  }
+
+  .cv-timeline-content h4 {
+    font-size: 0.76rem;
+  }
+
+  .cv-timeline-content ul {
+    margin-top: 0.35rem;
+  }
+
+  .cv-entry-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cv-entry-heading h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.77rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .cv-entry-heading p {
+    flex: 0 0 auto;
+    margin: 0;
+    color: var(--text);
+    font-size: 0.66rem;
+  }
+
+  .cv-entry-subtitle {
+    color: var(--text);
+    font-size: 0.7rem;
+  }
+
+  .cv-entry-detail {
+    margin-left: 0 !important;
+    font-style: italic;
+  }
+
+  .cv-skills strong {
+    color: var(--text);
+  }
+
+  @media (max-width: 600px) {
+    .cv-heading {
+      display: grid;
+      grid-template-columns: 4.5rem minmax(0, 1fr);
+      align-items: stretch;
+      gap: 0.8rem 1rem;
+    }
+
+    .cv-portrait {
+      width: 4.5rem;
+      grid-row: 1 / span 2;
+    }
+
+    .cv-download {
+      grid-column: 2;
+      justify-self: start;
+    }
+
+    .cv-section {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+
+    .cv-timeline {
+      --cv-meta-width: 5.5rem;
+      --cv-marker-width: 1rem;
+      --cv-track-center: 0.5rem;
+      --cv-timeline-gap: 0.4rem;
+    }
+
+    .cv-timeline-location {
+      font-size: 0.62rem;
+    }
+
+    .cv-timeline-date {
+      font-size: 0.58rem;
+    }
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 16mm 15mm;
+    }
+
+    :global(body) {
+      background: #fff;
+      color: #111;
+      font-family: Georgia, serif;
+      font-size: 9pt;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    :global(.page-shell) {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    :global(.site-header),
+    .cv-download {
+      display: none !important;
+    }
+
+    .cv-page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cv-heading h1 {
+      font-size: 30pt;
+    }
+
+    .cv-heading {
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 8mm;
+    }
+
+    .cv-download {
+      display: none !important;
+    }
+
+    .cv-portrait {
+      width: 24mm;
+      height: auto;
+      align-self: stretch;
+    }
+
+    .cv-section {
+      grid-template-columns: 38mm 1fr;
+      gap: 8mm;
+      padding: 4mm 0;
+      break-inside: avoid;
+    }
+
+    .cv-timeline {
+      --cv-meta-width: 42mm;
+      --cv-marker-width: 5mm;
+      --cv-track-center: 2.5mm;
+      --cv-timeline-gap: 2mm;
+    }
+
+    .cv-section h2 {
+      font-size: 8pt;
+    }
+
+    .cv-contact,
+    .cv-section-content,
+    .cv-role {
+      font-size: 8pt;
+    }
+
+    .cv-entry-heading h3 {
+      font-size: 8pt;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+</style>
