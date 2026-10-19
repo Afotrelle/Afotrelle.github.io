@@ -613,7 +613,9 @@ button {
   margin: 1.5rem auto;
 }
 
-.prose-figure--compact img {
+.prose-figure--compact img,
+.prose-figure--compact video {
+  display: block;
   width: 100%;
   height: auto;
 }

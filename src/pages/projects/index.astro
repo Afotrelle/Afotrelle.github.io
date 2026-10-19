@@ -44,6 +44,11 @@ const formatDate = (value: string | Date) => {
               </div>
             ) : null}
             <a class="read-link" href={`/projects/${project.slug}`}>Read more →</a>
+            {project.data.github ? (
+              <div>
+                <a class="read-link" href={project.data.github} target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+              </div>
+            ) : null}
           </article>
         ))}
       </div>

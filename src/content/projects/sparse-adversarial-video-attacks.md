@@ -2,11 +2,12 @@
 title: "Sparse Adversarial Video Attacks"
 type: "Research"
 subtype: "MSc Thesis"
-tags: [HPC, Slurm, PyTorch, Adversarial ML, Sparse Optimization]
+tags: [PyTorch, Hugging Face, Adversarial ML, Sparse Optimization, Video Models, HPC, Slurm]
 summary: "Exploiting l_0 and l_1 ball projections in PGD to enforce sparsity of adversarial perturbations against video models."
 publishedAt: 2026-10-09
 github: https://github.com/Afotrelle/Adv-attack-videos
 ---
+[**GITHUB →**](https://github.com/Afotrelle/Adv-attack-videos)
 
 This is the work behind my Master's thesis in Data Science at the University of Padova, carried out as a research internship in the VIMP (Visual Intelligence and Machine Perception) group, under the supervision of Prof. Lamberto Ballan and Prof. Marco Fiorucci.
 
@@ -29,6 +30,7 @@ The two closest prior works treat sparsity differently, and neither touches pixe
 <figure class="prose-figure prose-figure--compact" style="--figure-max-width: 40rem;">
 	<img src="/comparison_table.png" alt="Comparison of frame sparsity, pixel sparsity, and mechanisms across attacks" />
 </figure>
+
 Both baselines minimize an unconstrained, penalty-based objective in the spirit of Carlini & Wagner. A penalty has no way to impose a hard budget, which is why their frame sparsity is only induced or searched. A projected-gradient formulation can enforce one by construction.
 
 ## Approach

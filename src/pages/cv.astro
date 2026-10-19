@@ -48,6 +48,9 @@ import SiteHeader from '../components/SiteHeader.astro';
               <div class="cv-timeline-meta">
                 <p class="cv-timeline-location">University of Padova</p>
                 <p class="cv-timeline-date">2024–2026</p>
+                <a class="cv-timeline-logo-link" href="https://www.unipd.it/" target="_blank" rel="noreferrer">
+                  <img class="cv-timeline-logo" src="/logo_unipd.png" alt="University of Padua logo" />
+                </a>
               </div>
               <span class="cv-timeline-dot" aria-hidden="true"></span>
               <div class="cv-timeline-content">
@@ -65,6 +68,9 @@ import SiteHeader from '../components/SiteHeader.astro';
                 <div class="cv-timeline-meta">
                   <p class="cv-timeline-location">Visual Intelligence and Machine Perception group (VIMP @Unipd)</p>
                   <p class="cv-timeline-date">Mar–Sep 2026</p>
+                  <a class="cv-timeline-logo-link" href="http://vimp.math.unipd.it/index.html#" target="_blank" rel="noreferrer">
+                    <img class="cv-timeline-logo" src="/logo_vimp.png" alt="VIMP logo" />
+                  </a>
                 </div>
                 <span class="cv-timeline-dot" aria-hidden="true"></span>
                 <div class="cv-timeline-content">
@@ -84,6 +90,9 @@ import SiteHeader from '../components/SiteHeader.astro';
               <div class="cv-timeline-meta">
                 <p class="cv-timeline-location">University of Padova</p>
                 <p class="cv-timeline-date">2018–2023</p>
+                <a class="cv-timeline-logo-link" href="https://www.unipd.it/" target="_blank" rel="noreferrer">
+                  <img class="cv-timeline-logo" src="/logo_unipd.png" alt="University of Padua logo" />
+                </a>
               </div>
               <span class="cv-timeline-dot" aria-hidden="true"></span>
               <div class="cv-timeline-content">
@@ -101,10 +110,13 @@ import SiteHeader from '../components/SiteHeader.astro';
                 <div class="cv-timeline-meta">
                   <p class="cv-timeline-location">Universitat Autonoma de Barcelona (UAB)</p>
                   <p class="cv-timeline-date">Feb–Jul 2022</p>
+                  <a class="cv-timeline-logo-link" href="https://www.uab.cat/" target="_blank" rel="noreferrer">
+                    <img class="cv-timeline-logo" src="/logo_uab.png" alt="Universitat Autonoma de Barcelona logo" />
+                  </a>
                 </div>
                 <span class="cv-timeline-dot" aria-hidden="true"></span>
                 <div class="cv-timeline-content">
-                  <h4>Erasmus+</h4>
+                  <h4>Erasmus+ Mobility</h4>
                   <p class="cv-entry-detail">Stochastic Processes / Survival Analysis / Game Theory / Econometrics</p>
                 </div>
               </article>
@@ -131,6 +143,7 @@ import SiteHeader from '../components/SiteHeader.astro';
         <h2>Research interests</h2>
         <div class="cv-section-content">
           <p>Video understanding • 3D vision • World models • Embodied AI • Robustness • Interpretability</p>
+          <p>A more in-depth list of my projects is available at https://afotrelle.github.io/projects/</p>
         </div>
       </section>
 
@@ -138,7 +151,7 @@ import SiteHeader from '../components/SiteHeader.astro';
         <h2>Technical skills</h2>
         <div class="cv-section-content cv-skills">
           <p><strong>Languages:</strong> Python, R, SQL, Bash</p>
-          <p><strong>Deep learning &amp; vision:</strong> PyTorch (primary), Hugging Face (Transformers, Datasets), OpenCV, TensorFlow, Keras</p>
+          <p><strong>Deep learning &amp; vision:</strong> PyTorch, Hugging Face (Transformers, Datasets), OpenCV, TensorFlow, Keras</p>
           <p><strong>Data &amp; scientific computing:</strong> NumPy, pandas, scikit-learn, matplotlib</p>
           <p><strong>Research &amp; compute:</strong> Linux, HPC clusters (Slurm), Docker, Git/GitHub, Conda, Jupyter, LaTeX</p>
           <p><strong>Design &amp; 3D:</strong> Figma, Adobe Photoshop/Illustrator, Rhinoceros 3D</p>
@@ -148,10 +161,10 @@ import SiteHeader from '../components/SiteHeader.astro';
       <section class="cv-section">
         <h2>Languages</h2>
         <div class="cv-section-content">
-          <p>Italian — C2 (Native)</p>
-          <p>English – B2</p>
-          <p>Slovenian — C1</p>
-          <p>Spanish — B1</p>
+          <p>🇮🇹 Italian — C2 (Native)</p>
+          <p>🇬🇧 English – B2</p>
+          <p>🇸🇮 Slovenian — C1</p>
+          <p>🇪🇸 Spanish — B1</p>
         </div>
       </section>
 
@@ -365,6 +378,20 @@ import SiteHeader from '../components/SiteHeader.astro';
     color: var(--muted);
     font-size: 0.62rem;
     line-height: 1.45;
+  }
+
+  .cv-timeline-logo-link {
+    display: inline-flex;
+    margin-top: 0.35rem;
+  }
+
+  .cv-timeline-logo {
+    display: block;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 4px;
+    background: #fff;
+    object-fit: contain;
   }
 
   .cv-timeline-dot {
