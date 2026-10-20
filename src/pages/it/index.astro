@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+
+const formatDate = (value: string | Date) => {
+  const date = value instanceof Date ? value : new Date(value);
+  return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+};
+
+const recentWork = (await getCollection('projects-it'))
+  .sort((a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf())
+  .slice(0, 3);
+
+const experience = [
+  {
+    period: '2024 — 2026',
+    role: 'Laurea magistrale in Data Science @UniPd',
+    detail: '110/110. Tesi sugli attacchi avversari sparsi per la classificazione di azioni nei video.',
+    logo: '/logo_unipd.png',
+    alt: 'Logo dell’Università di Padova',
+    url: 'https://www.unipd.it/',
+  },
+  {
+    period: '2026',
+    role: 'Tirocinio di ricerca @VIMP (UniPd)',
+    detail: 'Tirocinio nel gruppo Visual Intelligence and Machine Perception (VIMP), con i Prof. Lamberto Ballan e Marco Fiorucci, sugli attacchi avversari ai modelli video per la tesi magistrale.',
+    logo: '/logo_vimp.png',
+    alt: 'Logo VIMP',
+    url: 'http://vimp.math.unipd.it/index.html#',
+  },
+  {
+    period: '2018 — 2023',
+    role: 'Laurea triennale in Statistica @UniPd',
+    detail: '95/110. Tesi sui cambiamenti climatici e i venti estremi nel Nord Italia.',
+    logo: '/logo_unipd.png',
+    alt: 'Logo dell’Università di Padova',
+    url: 'https://www.unipd.it/',
+  },
+  {
+    period: '2022',
+    role: 'Mobilità Erasmus+ @UAB',
+    detail: 'Cinque mesi come studente in visita nel corso di Statistica applicata dell’Universitat Autònoma de Barcelona.',
+    logo: '/logo_uab.png',
+    alt: 'Logo dell’Universitat Autònoma de Barcelona',
+    url: 'https://www.uab.cat/',
+  },
+];
+---
+
+<Layout
+  title="Arturo Bevilacqua | Portfolio di Data Science"
+  description="Portfolio di Data Science e machine learning: statistica, computer vision e ricerca sull’intelligenza artificiale."
+>
+  <div class="page-shell">
+    <SiteHeader />
+
+    <main>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Data Science • Machine Learning • Computer Vision</p>
+          <h1>Arturo Bevilacqua</h1>
+          <p class="lead">
+            Laureato magistrale in Data Science, con esperienza in computer vision e robustezza dei modelli. Sono interessato ai modelli multimodali e le loro applicazioni per il world modeling, la robotica e l'intelligenza spaziale.
+          </p>
+          <div class="cta-row">
+            <a class="primary-button" href="/it/projects">Tutti i progetti</a>
+            <a class="secondary-button" href="/it/contact">Contattami</a>
+          </div>
+          <div class="hero-links">
+            <a href="mailto:arti.bevilacqua@gmail.com">arti.bevilacqua@gmail.com</a>
+            <a href="https://github.com/afotrelle" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/arturo-bevilacqua-ba0875209/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="portrait-frame">
+            <img src="/arturo.jpg" alt="Ritratto di Arturo Bevilacqua" />
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section panel">
+        <div class="section-heading">
+          <h2 class="single-header">Progetti recenti</h2>
+        </div>
+        <div class="news-list">
+          {recentWork.map((project) => (
+            <article class="news-item">
+              <div class="news-meta">{formatDate(project.data.publishedAt)} • {project.data.type}{project.data.subtype ? ` / ${project.data.subtype}` : ''}</div>
+              <h3><a href={`/it/projects/${project.data.slug ?? project.id.replace(/^it-/, '')}`}>{project.data.title}</a></h3>
+              <p>{project.data.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="experience-section panel">
+        <div class="section-heading">
+          <h2>Esperienze e formazione</h2>
+        </div>
+        <div class="experience-list">
+          {experience.map((item) => (
+            <div class="experience-item">
+              <div class="experience-meta-col">
+                <span class="experience-period">{item.period}</span>
+                <a href={item.url} target="_blank" rel="noreferrer" aria-label={`Visita ${item.alt}`}>
+                  <img class="experience-logo" src={item.logo} alt={item.alt} />
+                </a>
+              </div>
+              <div>
+                <h3>{item.role}</h3>
+                <p>{item.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>

@@ -1,50 +1,54 @@
 ---
 import WindsurfToggle from './WindsurfToggle.tsx';
 
-const { current = Astro.url.pathname } = Astro.props;
-
-const isWindsurfMode = Astro.url.pathname.startsWith('/windsurfing');
+const isWindsurfMode = Astro.url.pathname.replace(/^\/it(?=\/|$)/, '').startsWith('/windsurfing');
+const isItalian = Astro.url.pathname === '/it' || Astro.url.pathname.startsWith('/it/');
+const localePrefix = isItalian ? '/it' : '';
 const navItems = !isWindsurfMode
   ? [
-      { label: 'Home', href: '/' },
-      { label: 'Projects', href: '/projects' },
-      { label: 'CV', href: '/cv' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Home', href: `${localePrefix}/` },
+      { label: isItalian ? 'Progetti' : 'Projects', href: `${localePrefix}/projects` },
+      { label: isItalian ? 'CV' : 'CV', href: `${localePrefix}/cv` },
+      { label: isItalian ? 'Contatti' : 'Contact', href: `${localePrefix}/contact` },
     ]
   : [];
 
-const pathname = current === '/' ? '/' : current.replace(/\/$/, '');
-const homeHref = isWindsurfMode ? '/windsurfing' : '/';
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const homeHref = isWindsurfMode ? `${localePrefix}/windsurfing` : `${localePrefix}/`;
+const normalizedHomeHref = homeHref.replace(/\/$/, '') || '/';
+const englishPath = Astro.url.pathname.replace(/^\/it(?=\/|$)/, '') || '/';
+const italianPath = `/it${englishPath === '/' ? '/' : englishPath}`;
 ---
 
 <header class="site-header">
   <div class="brand-wrap">
     <a href={homeHref} class="brand-name">Arturo Bevilacqua</a>
+    <WindsurfToggle
+      client:load
+      label={isWindsurfMode ? '🤖' : '🌊'}
+    />
   </div>
 
-  {isWindsurfMode ? (
-    <div class="mode-switcher">
-      <WindsurfToggle
-        client:load
-        label="🤖"
-      />
-    </div>
-  ) : (
-    <nav class="top-nav" aria-label="Main navigation">
-      {navItems.map((item) => {
-        const isActive = item.href === homeHref ? pathname === homeHref : pathname === item.href || pathname.startsWith(`${item.href}/`);
+  <nav class="top-nav" aria-label={isItalian ? 'Navigazione principale' : 'Main navigation'}>
+    {navItems.map((item) => {
+      const normalizedHref = item.href.replace(/\/$/, '') || '/';
+      const isActive = normalizedHref === normalizedHomeHref ? pathname === normalizedHomeHref : pathname === normalizedHref || pathname.startsWith(`${normalizedHref}/`);
 
-        return (
-          <a href={item.href} class:list={[{ 'is-active': isActive }]} aria-current={isActive ? 'page' : undefined}>
-            {item.label}
-          </a>
-        );
-      })}
+      return (
+        <a href={item.href} class:list={[{ 'is-active': isActive }]} aria-current={isActive ? 'page' : undefined}>
+          {item.label}
+        </a>
+      );
+    })}
 
-      <WindsurfToggle
-        client:load
-        label="🌊"
-      />
-    </nav>
-  )}
+    <a
+      class="language-switch"
+      href={isItalian ? englishPath : italianPath}
+      lang={isItalian ? 'en' : 'it'}
+      aria-label={isItalian ? 'Switch to English' : 'Passa all’italiano'}
+      title={isItalian ? 'Switch to English' : 'Passa all’italiano'}
+    >
+      {isItalian ? '🇬🇧' : '🇮🇹'}
+    </a>
+  </nav>
 </header>

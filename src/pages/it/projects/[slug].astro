@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects-it');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug ?? project.id.replace(/^it-/, '') },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const date = new Date(project.data.publishedAt);
+const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+---
+
+<Layout title={`${project.data.title} | Arturo Bevilacqua`}>
+  <div class="page-shell">
+    <SiteHeader />
+    <main class="content-page">
+      <article class="project-article panel">
+        <p class="section-kicker">{formattedDate} • {project.data.type}{project.data.subtype ? ` / ${project.data.subtype}` : ''}</p>
+        <h1>{project.data.title}</h1>
+        <p class="article-summary">{project.data.summary}</p>
+        {project.data.tags?.length ? (
+          <div class="project-topics">
+            <span class="project-topics-label">Temi</span>
+            <ul aria-label="Argomenti del progetto">{project.data.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </div>
+        ) : null}
+        <div class="prose"><Content /></div>
+      </article>
+    </main>
+  </div>
+</Layout>

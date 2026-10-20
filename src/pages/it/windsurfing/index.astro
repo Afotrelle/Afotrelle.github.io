@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+
+const sessions = (await getCollection('sessions-it')).sort(
+  (a, b) => new Date(b.data.publishedAt).valueOf() - new Date(a.data.publishedAt).valueOf(),
+);
+
+const formatDate = (value: string | Date) => {
+  const date = value instanceof Date ? value : new Date(value);
+  return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+};
+---
+
+<Layout title="Windsurf e wingfoil | Arturo Bevilacqua">
+  <div class="page-shell windsurf-shell">
+    <SiteHeader />
+    <main>
+      <div class="page-banner">
+        <p class="hero-note">
+          Questa pagina racconta il lato <em>fuori dal lavoro</em> di Arturo Bevilacqua; per quello <em>professionale</em>, clicca <span aria-hidden="true">🤖</span>.
+        </p>
+      </div>
+      <section class="hero panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Windsurf • Wingfoil • Vela</p>
+          <h1>Arturo Bevilacqua</h1>
+          <p class="lead">
+            Quando non sono al computer, cerco le condizioni ideali di vento e onde sulla mia tavola da wingfoil.
+          </p>
+          <div class="cta-row"><a class="primary-button" href="#sessions">Eventi e uscite</a></div>
+          <div class="hero-links">
+            <a href="https://www.instagram.com/afotrelle/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://connect.garmin.com/modern/profile/01657c29-bf95-4985-884f-2e209ae512e0" target="_blank" rel="noreferrer">Garmin Connect</a>
+            <a href="https://strava.app.link/zrTRU36T56b" target="_blank" rel="noreferrer">Strava</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="portrait-frame"><img src="/arturo_wing.jpeg" alt="Arturo Bevilacqua con la tavola da wingfoil" /></div>
+        </div>
+      </section>
+      <section class="top-spots" aria-label="Spot preferiti">
+        <div class="top-spots-line">
+          <span>Spot preferiti</span>
+          <a href="https://www.google.com/maps/place/Blue+Zone+Sardinia/@41.1273187,9.065997,736m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12dbe459de83bc29:0xf8342df721a81854!8m2!3d41.1273147!4d9.0685719!16s%2Fg%2F11fzf36dd5?entry=ttu&g_ep=EgoyMDI2MTAwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Vignola Mare</a>
+          <a href="https://www.google.com/maps/place/ASSOCIAZIONE+VELICA+DILETTANTISTICA+WINDSURFING+MARINA+JULIA/@45.7746023,13.5280144,681m/data=!3m2!1e3!4b1!4m6!3m5!1s0x477b09c320b6ed65:0xa01c7f9c3d43624c!8m2!3d45.7745986!4d13.5305893!16s%2Fg%2F11fy_q6nk4?entry=ttu&g_ep=EgoyMDI2MTAwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Marina Julia</a>
+          <a href="https://www.google.com/maps/place/Parkplatz/@46.106229,12.3528538,97m/data=!3m1!1e3!4m6!3m5!1s0x47790b07fc7033bd:0xd4cf494ba77e1bb7!8m2!3d46.1060134!4d12.3532069!16s%2Fg%2F11h5l42r8r?entry=ttu&g_ep=EgoyMDI2MTAwNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Lago di Santa Croce</a>
+        </div>
+      </section>
+      <section id="sessions" class="content-section panel">
+        <div class="section-heading"><p class="section-kicker">Ultime notizie e uscite</p></div>
+        <div class="news-list">
+          {sessions.map((session) => (
+            <article class="news-item">
+              <div class="news-meta">{formatDate(session.data.publishedAt)} • {session.data.type}</div>
+              <h3><a href={`/it/windsurfing/sessions/${session.data.slug ?? session.id.replace(/^it-/, '')}`}>{session.data.title}</a></h3>
+              <p>{session.data.summary}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>

@@ -12,11 +12,13 @@ const {
   description = 'Data scientist and machine-learning portfolio focused on statistics, computer vision, and applied AI research.',
 } = Astro.props;
 
-const isWindsurfPage = Astro.url.pathname.startsWith('/windsurfing');
+const isItalian = Astro.url.pathname === '/it' || Astro.url.pathname.startsWith('/it/');
+const localizedPathname = Astro.url.pathname.replace(/^\/it(?=\/|$)/, '') || '/';
+const isWindsurfPage = localizedPathname.startsWith('/windsurfing');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={isItalian ? 'it' : 'en'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
